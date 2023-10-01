@@ -2,6 +2,10 @@
     #define __INCLUDE_BLOCK__
 
     #include <bitset>
+    #include <iostream>
+
+    #include "ClassEssence"
+    #include "Constant"
 
     namespace ptc
     {
@@ -11,7 +15,10 @@
             std::bitset<8> mat[4][4];
             
             public:
-            Block(const char str[33]);
+            Block(const char str[33] = __DEFAULT_INIT_STRING);
+            Block(const Block &src);
+
+            void ToStr(char res[33]) const;
 
             friend Block ByteSub(const Block &src);
             friend Block ShiftCol(const Block &src);

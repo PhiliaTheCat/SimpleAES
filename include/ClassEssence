@@ -1,0 +1,9 @@
+#ifndef __INCLUDE_CLASS_ESSENCE__
+    #define __INCLUDE_CLASS_ESSENCE__
+
+    namespace ptc
+    {
+        class Key;
+        class Block;
+    }
+#endif

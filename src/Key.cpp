@@ -1,5 +1,4 @@
 #include <iostream>
-#include <bitset>
 
 #include "../include/Key"
 
@@ -59,5 +58,34 @@ namespace ptc
                 res.mat[i][j] = res.mat[i - 1][j] ^ mat[i][j];
         }
         return res;
+    }
+
+    void Key::ToStr(char res[33]) const
+    {
+        int cnt = 0, sum = 0, p = 0;
+        for (int i = 0; i < 4; i += 1)
+        {
+            for (int j = 0; j < 4; j += 1)
+            {
+                for (int k = 7; k > -1; k -= 1)
+                {
+                    sum *= 2;
+                    sum += mat[i][j][k];
+                    cnt += 1;
+                    if (cnt == 4)
+                    {
+                        if (sum >= 0 && sum <= 9)
+                            res[p] = '0' + sum;
+                        else if (sum >= 10 && sum <= 15)
+                            res[p] = 'A' + sum - 10;
+                        cnt = 0;
+                        sum = 0;
+                        p += 1;
+                    }
+                }
+            }
+        }
+        res[p] = 0;
+        return;
     }
 }

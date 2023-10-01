@@ -1,0 +1,8 @@
+#ifndef __INCLUDE_SIMPLE_AES__
+    #define __INCLUDE_SIMPLE_AES__
+    
+    namespace ptc
+    {
+        void Encryption(const char msg[33], const char key[33], char res[33]);
+    }
+#endif
