@@ -1,0 +1,6 @@
+# VSC properties
+.vscode
+
+# C++ properties
+lib
+bin

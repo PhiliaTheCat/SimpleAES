@@ -52,10 +52,9 @@ namespace ptc
             int t2 = ToInt(src.mat[i][1]);
             int t3 = ToInt(src.mat[i][2]);
             int t4 = ToInt(src.mat[i][3]);
-            std::cout << t1 << t2 << t3 << t4 << std::endl;
-            res.mat[i][0] = t1 * 2;
-            res.mat[i][1] = t1 + t2 * 2;
-            res.mat[i][2] = t1 + t2 + t3 * 2;
+            res.mat[i][0] = 2 * t1 + 3 * t2 + t3 + t4;
+            res.mat[i][1] = t1 + t2 * 2 + t3 + 3 * t4;
+            res.mat[i][2] = t1 + t2 + t3 * 2 + 3 * t4;
             res.mat[i][3] = t1 * 3 + t2 + t3 + t4 * 2;
         }
         char str[33];
