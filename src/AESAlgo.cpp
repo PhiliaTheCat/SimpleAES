@@ -53,10 +53,10 @@ namespace ptc
             a2 = src.mat[i][1];
             a3 = src.mat[i][2];
             a4 = src.mat[i][3];
-            res.mat[i][0] = Mul02(a1) ^ Mul03(a2) ^ a3 ^ a4;
-            res.mat[i][1] = a1 ^ Mul02(a2) ^ Mul03(a3) ^ a4;
-            res.mat[i][2] = a1 ^ a2 ^ Mul02(a3) ^ Mul03(a4);
-            res.mat[i][3] = Mul03(a1) ^ a2 ^ a3 ^ Mul02(a4);
+            res.mat[i][0] = Mul(a1, 2) ^ Mul(a2, 3) ^ a3 ^ a4;
+            res.mat[i][1] = a1 ^ Mul(a2, 2) ^ Mul(a3, 3) ^ a4;
+            res.mat[i][2] = a1 ^ a2 ^ Mul(a3, 2) ^ Mul(a4, 3);
+            res.mat[i][3] = Mul(a1, 3) ^ a2 ^ a3 ^ Mul(a4, 2);
         }
         return res;
     }
@@ -83,9 +83,8 @@ namespace ptc
         return res;
     }
 
-    std::bitset<8> Mul02(const std::bitset<8> &src)
+    std::bitset<8> Mulx(const std::bitset<8> &src)
     {
-
         std::bitset<8> res;
         res = src << 1;
         if (src[7])
@@ -93,13 +92,19 @@ namespace ptc
         return res;
     }
 
-    std::bitset<8> Mul03(const std::bitset<8> &src)
+    std::bitset<8> Mul(const std::bitset<8> &src, int ind)
     {
-        std::bitset<8> res;
-        res = src << 1;
-        if (src[7])
-            res ^= 0b00011011;
-        res ^= src;
+        std::bitset<8> res = 0;
+        std::bitset<8> a[8];
+        a[0] = src;
+        for (int i = 1; i < 8; i += 1)
+            a[i] = Mulx(a[i - 1]);
+        for (int i = 0; i < 8; i += 1)
+        {
+            if (ind % 2 == 1)
+                res ^= a[i];
+            ind /= 2;
+        }
         return res;
     }
 }

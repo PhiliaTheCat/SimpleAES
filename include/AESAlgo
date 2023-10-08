@@ -19,7 +19,7 @@
 
         int ToInt(const std::bitset<8> &src);
 
-        std::bitset<8> Mul02(const std::bitset<8> &src);
-        std::bitset<8> Mul03(const std::bitset<8> &src);
+        std::bitset<8> Mulx(const std::bitset<8> &src);
+        std::bitset<8> Mul(const std::bitset<8> &src, int ind);
     }
 #endif
