@@ -2,7 +2,6 @@
     #define __INCLUDE_BLOCK__
 
     #include <bitset>
-    #include <iostream>
 
     #include "ClassEssence"
     #include "Constant"

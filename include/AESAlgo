@@ -1,6 +1,8 @@
 #ifndef __INCLUDE_AESALGO__
     #define __INCLUDE_AESALGO__
 
+    #include <bitset>
+
     #include "Key"
     #include "Block"
     #include "Constant"
@@ -16,5 +18,8 @@
         Block AddRndKey(const Block &src, const Key &key);
 
         int ToInt(const std::bitset<8> &src);
+
+        std::bitset<8> Mul02(const std::bitset<8> &src);
+        std::bitset<8> Mul03(const std::bitset<8> &src);
     }
 #endif

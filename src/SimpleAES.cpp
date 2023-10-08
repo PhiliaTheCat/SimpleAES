@@ -31,6 +31,6 @@ void ptc::Encryption(const char msg[33], const char key[33], char res[33])
         m = Round(m, arr[i]);
     m = FinalRound(m, arr[10]);
     m.ToStr(res);
-    //cout << res << endl;
+    cout << res << endl;
     return;
 }

@@ -46,20 +46,18 @@ namespace ptc
     Block MixRow(const Block &src)
     {
         Block res;
+        std::bitset<8> a1, a2, a3, a4;
         for (int i = 0; i < 4; i += 1)
         {
-            int t1 = ToInt(src.mat[i][0]);
-            int t2 = ToInt(src.mat[i][1]);
-            int t3 = ToInt(src.mat[i][2]);
-            int t4 = ToInt(src.mat[i][3]);
-            res.mat[i][0] = 2 * t1 + 3 * t2 + t3 + t4;
-            res.mat[i][1] = t1 + t2 * 2 + t3 + 3 * t4;
-            res.mat[i][2] = t1 + t2 + t3 * 2 + 3 * t4;
-            res.mat[i][3] = t1 * 3 + t2 + t3 + t4 * 2;
+            a1 = src.mat[i][0];
+            a2 = src.mat[i][1];
+            a3 = src.mat[i][2];
+            a4 = src.mat[i][3];
+            res.mat[i][0] = Mul02(a1) ^ Mul03(a2) ^ a3 ^ a4;
+            res.mat[i][1] = a1 ^ Mul02(a2) ^ Mul03(a3) ^ a4;
+            res.mat[i][2] = a1 ^ a2 ^ Mul02(a3) ^ Mul03(a4);
+            res.mat[i][3] = Mul03(a1) ^ a2 ^ a3 ^ Mul02(a4);
         }
-        char str[33];
-        res.ToStr(str);
-        std::cout << str << std::endl;
         return res;
     }
 
@@ -82,6 +80,26 @@ namespace ptc
             res *= 2;
             res += src[i];
         }
+        return res;
+    }
+
+    std::bitset<8> Mul02(const std::bitset<8> &src)
+    {
+
+        std::bitset<8> res;
+        res = src << 1;
+        if (src[7])
+            res ^= 0b00011011;
+        return res;
+    }
+
+    std::bitset<8> Mul03(const std::bitset<8> &src)
+    {
+        std::bitset<8> res;
+        res = src << 1;
+        if (src[7])
+            res ^= 0b00011011;
+        res ^= src;
         return res;
     }
 }
