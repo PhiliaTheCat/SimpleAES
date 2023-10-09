@@ -22,6 +22,11 @@
             friend Block ByteSub(const Block &src);
             friend Block ShiftCol(const Block &src);
             friend Block MixRow(const Block &src);
+
+            friend Block InvByteSub(const Block &src);
+            friend Block InvShiftCol(const Block &src);
+            friend Block InvMixRow(const Block &src);
+
             friend Block AddRndKey(const Block &src, const Key &key);
         };
     }

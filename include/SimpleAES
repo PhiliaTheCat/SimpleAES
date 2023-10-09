@@ -4,5 +4,6 @@
     namespace ptc
     {
         void Encryption(const char msg[33], const char key[33], char res[33]);
+        void Decryption(const char msg[33], const char key[33], char res[33]);
     }
 #endif

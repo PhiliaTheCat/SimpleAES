@@ -12,9 +12,17 @@
         Block Round(const Block &src, const Key &key);
         Block FinalRound(const Block &src, const Key &key);
 
+        Block InvRound(const Block &src, const Key &key);
+        Block InvFinalRound(const Block &src, const Key &key);
+
         Block ByteSub(const Block &src);
         Block ShiftCol(const Block &src);
         Block MixRow(const Block &src);
+
+        Block InvByteSub(const Block &src);
+        Block InvShiftCol(const Block &src);
+        Block InvMixRow(const Block &src);
+
         Block AddRndKey(const Block &src, const Key &key);
 
         int ToInt(const std::bitset<8> &src);
